@@ -70,3 +70,6 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem}
 .dark a{color:var(--brass)}
 .split img.plain{border-bottom:0}
 .center{text-align:center}.center p{margin-inline:auto}.center form{margin-inline:auto;text-align:left}
+@media(max-width:760px){
+  .hero{min-height:60vh;background-position:60% center}
+}
