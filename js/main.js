@@ -8,7 +8,7 @@ const btn = document.querySelector('.menu-btn'), navEl = document.getElementById
 btn.onclick = () => btn.setAttribute('aria-expanded', navEl.classList.toggle('open'));
 // contact form (sends through Web3Forms; messages arrive at the email the access key was created with)
 document.querySelectorAll('[data-contact]').forEach(el => {
-    el.innerHTML = `<form><div class="row"><label>First name*<input name="first" required></label><label>Last name*<input name="last" required></label></div><label>Email*<input type="email" name="email" required></label><label>Phone<input type="tel" name="phone"></label><label>Message*<textarea name="message" required></textarea></label><input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off"><button class="btn" type="submit">Send message</button><p class="note" role="status"></p></form>`;
+    el.innerHTML = `<form><div class="row"><label>First name*<input name="first" required></label><label>Last name*<input name="last" required></label></div><label>Email*<input type="email" name="email" required pattern="[^@ ]+@[^@ ]+[.][^@ ]{2,}" title="Enter a full email address, like name@example.com"></label><label>Phone<input type="tel" name="phone"></label><label>Message*<textarea name="message" required></textarea></label><input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off"><button class="btn" type="submit">Send message</button><p class="note" role="status"></p></form>`;
     const form = el.querySelector('form');
     const note = form.querySelector('.note');
     const sendBtn = form.querySelector('button');
@@ -16,7 +16,8 @@ document.querySelectorAll('[data-contact]').forEach(el => {
         e.preventDefault();
         const data = new FormData(form);
         data.append('access_key', '390ecd6e-e0f1-49aa-a397-0c5cb83a3e70');
-        data.append('subject', 'New message from your website');
+        data.append('subject', 'Website Message');
+        data.append('from_name', 'JTZ Website');
         data.append('name', data.get('first') + ' ' + data.get('last'));
         sendBtn.disabled = true;
         note.textContent = 'Sending...';
